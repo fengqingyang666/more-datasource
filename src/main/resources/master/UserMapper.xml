@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atjack.dao.master.UserDao">
+
+    <sql id="query_id">
+        <if test="userName != null and userName !='' " >
+            and user_name = #{userName}
+        </if>
+    </sql>
+
+    <resultMap id="result" type="com.atjack.bean.User">
+        <id column="id" property="id"></id>
+        <result column="user_name" property="userName"></result>
+        <result column="description" property="description"></result>
+    </resultMap>
+
+
+    <select id="findByName" parameterType="com.atjack.bean.User" resultMap="result">
+        select * from user where user_name = #{userName}
+    </select>
+
+    <select id="findAll" resultMap="result">
+        select * from user
+    </select>
+
+    <select id="selectAll" resultMap="result">
+        select * from user
+    </select>
+</mapper>
